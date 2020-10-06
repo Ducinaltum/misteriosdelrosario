@@ -6,33 +6,43 @@ function Start() {
     cnvs.addEventListener("mousemove", mouseMoveHandler, false);
     cnvs.addEventListener("mousedown", mouseDown, false);
     cnvs.addEventListener("mouseup", mouseUp, false);
-    var mousePos = {
+    var mouse = {
+        posX:0,
+        posY:0,
+        isMouseDown: false,
+        isMouseLoaded: false
+    }
+    /*var mousePos = {
         X: 0,
         Y: 0
     }
     var isMouseDown = false;
+    var isMouseLoaded = false;*/
 
     function mouseMoveHandler(e) {
-        mousePos.X = e.clientX - cnvs.offsetLeft;
-        mousePos.Y = e.clientY - cnvs.offsetTop;
+        mouse.posX = e.clientX - cnvs.offsetLeft;
+        mouse.posY = e.clientY - cnvs.offsetTop;
+        //mousePos.X = e.clientX - cnvs.offsetLeft;
+        //mousePos.Y = e.clientY - cnvs.offsetTop;
     }
     
     function mouseDown(e){
-        isMouseDown = true
+        mouse.isMouseDown = true
     }
     function mouseUp(e){
-        isMouseDown = false;
+        mouse.isMouseDown = false;
+        mouse.isMouseLoaded = false;
     }
     denario = new Denario()
 
     setInterval(() => {
+        console.log(mouse)
         context.clearRect(0, 0, cnvs.clientWidth, cnvs.clientHeight);
         denario.cuentas.forEach(oracion => {
-            //oracion.update(mousePos, isMouseDown)
             oracion.draw(context)
         });
         denario.aveMaria.forEach(oracion => {
-            oracion.update(mousePos, isMouseDown)
+            oracion.update(mouse)
             oracion.draw(context)
         });
 

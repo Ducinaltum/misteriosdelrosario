@@ -11,12 +11,13 @@ function loadImages(){
         let fimage = new Image()
         fimage.src = "Assets\\flower_" + (i + 1) + ".png";
         flowersImages.push(fimage)
-
+        console.log(fimage.src)
         let cimage = new Image()
         cimage.src = "Assets\\cuenta_" + (i + 1) + ".png";
         cuentasImages.push(cimage)
     }
-    console.log("succes")
+    console.log(flowersImages)
+    console.log(cuentasImages)
 }
 
 loadImages()

@@ -9,18 +9,21 @@ function Flower(i){
     var posY = Math.floor(Math.random()*cnvs.clientHeight)
     var isClicked;
 
-    this.update = function(mousePos, isMouseDown){
-        if(isMouseDown){
-                var dx = posX - mousePos.X;
-                var dy = posY - mousePos.Y;
+    this.update = function(mouse){
+        if(mouse.isMouseDown){
+            if(!mouse.isMouseLoaded){
+                var dx = posX - mouse.posX;
+                var dy = posY - mouse.posY;
                 var distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < rad + 1) {
                     isClicked = true;
+                    mouse.isMouseLoaded = true
                 }
+            }
         } else isClicked = false;
         if(isClicked){
-            posX = mousePos.X
-            posY = mousePos.Y
+            posX = mouse.posX
+            posY = mouse.posY
         }
         //Si está colisionando con la cuenta que le corresponde incia un Lerp hasta centrase en su lugar
     }
