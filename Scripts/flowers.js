@@ -1,5 +1,6 @@
-function Flower(i){
+function Flower(i, cta){
     var img = flowersImages[i]
+    var cuenta = cta;
     var index = i;
     var ratio = img.height/ img.width
     var width = cnvs.clientWidth * (1/25);
@@ -8,24 +9,31 @@ function Flower(i){
     var posX = Math.floor(Math.random()*cnvs.clientWidth)
     var posY = Math.floor(Math.random()*cnvs.clientHeight)
     var isClicked;
+    var hasReachedDestiny = false;
 
-    this.update = function(mouse){
+    this.update = function(mouse, denario){
         if(mouse.isMouseDown){
             if(!mouse.isMouseLoaded){
-                var dx = posX - mouse.posX;
-                var dy = posY - mouse.posY;
-                var distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < rad + 1) {
+                if(radCollition(this.size(), mouse)){
                     isClicked = true;
-                    mouse.isMouseLoaded = true
+                    mouse.isMouseLoaded = true;
                 }
             }
-        } else isClicked = false;
-        if(isClicked){
-            posX = mouse.posX
-            posY = mouse.posY
+        } else {
+            isClicked = false;
+            //console.log(cuenta)
+            if( !hasReachedDestiny){
+                if (radCollition(this.size(), cuenta.size())) {
+                    console.log("done")
+                    hasReachedDestiny = true
+                    denario.conteo++;
+                }
+            }
         }
-        //Si está colisionando con la cuenta que le corresponde incia un Lerp hasta centrase en su lugar
+        if(isClicked){
+            posX = mouse.X
+            posY = mouse.Y
+        }
     }
 
     this.draw =function(ctx){
@@ -42,8 +50,7 @@ function Flower(i){
             Y:posY,
             radious:rad
         }
-
-    }    
+    }
 }
 
 function Cuentas(i){
@@ -60,6 +67,14 @@ function Cuentas(i){
         ctx.drawImage(hilo.img, posX + width/2 , posY - hilo.height/2, hilo.width, hilo.height)
         ctx.drawImage(img, posX - width/2, posY - height/2, width, height)
     };
+
+    this.size = function(){
+        return obj = {
+            X:posX,
+            Y:posY,
+            radious:rad
+        }
+    }
 }
 
 function Hilo(objectiveSize){
@@ -67,4 +82,46 @@ function Hilo(objectiveSize){
     ratio = this.img.height / this.img.width
     this.width = objectiveSize
     this.height = objectiveSize * ratio
+}
+
+function CuentaPadrenuestro(posicionY){
+    var img = padreNuestroGloriaImage
+    var width = cnvs.clientWidth * (1/14);
+    var height = width
+    var rad = width > height? width /2 : height/2;
+    var posX =  rad +10
+    var posY = posicionY
+    var hilo = new Hilo(cnvs.clientWidth * (1/24))
+    this.draw =function(ctx){
+        ctx.drawImage(hilo.img, posX + width/2 , posY - hilo.height/2, hilo.width, hilo.height)
+        ctx.drawImage(img, posX - width/2, posY - height/2, width, height)
+    };
+
+    this.size = function(){
+        return obj = {
+            X:posX,
+            Y:posY,
+            radious:rad
+        }
+    }
+}
+function CuentaGloria(posicionY){
+    console.log(posicionY)
+    var img = padreNuestroGloriaImage
+    var width = cnvs.clientWidth * (1/15);
+    var height = width
+    var rad = width > height? width /2 : height/2;
+    var posX = cnvs.clientWidth - rad - 10
+    var posY = posicionY
+    this.draw =function(ctx){
+        ctx.drawImage(img, posX - width/2, posY - height/2, width, height)
+    };
+
+    this.size = function(){
+        return obj = {
+            X:posX,
+            Y:posY,
+            radious:rad
+        }
+    }
 }

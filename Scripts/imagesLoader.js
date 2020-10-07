@@ -10,14 +10,21 @@ function loadImages(){
     for(var i = 0; i< 10; i++){
         let fimage = new Image()
         fimage.src = "Assets\\flower_" + (i + 1) + ".png";
+        //fimage.onload = function(){console.log("ready")}
         flowersImages.push(fimage)
-        console.log(fimage.src)
         let cimage = new Image()
         cimage.src = "Assets\\cuenta_" + (i + 1) + ".png";
+        //cimage.onload = function(){console.log("cuentas ready")}
         cuentasImages.push(cimage)
     }
-    console.log(flowersImages)
-    console.log(cuentasImages)
 }
 
 loadImages()
+
+window.addEventListener("load", event => {
+    var image = document.querySelector('img');
+    console.log(image)
+    console.log("load")
+    //var isLoaded = image.complete && image.naturalHeight !== 0;
+    //alert(isLoaded);
+  });
