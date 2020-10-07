@@ -6,8 +6,8 @@ function Flower(i, cta){
     var width = cnvs.clientWidth * (1/25);
     var height = width * ratio
     var rad = width > height? width /2 : height/2;
-    var posX = Math.floor(Math.random()*cnvs.clientWidth)
-    var posY = Math.floor(Math.random()*cnvs.clientHeight)
+    var posX = Math.floor(Math.random()*cnvs.clientWidth - width) + width
+    var posY = Math.floor(Math.random()*cnvs.clientHeight - cuenta.size().Y - cuenta.size().radious) + cuenta.size().Y + cuenta.size().radious
     var isClicked;
     var hasReachedDestiny = false;
 
@@ -24,7 +24,6 @@ function Flower(i, cta){
             //console.log(cuenta)
             if( !hasReachedDestiny){
                 if (radCollition(this.size(), cuenta.size())) {
-                    console.log("done")
                     hasReachedDestiny = true
                     denario.conteo++;
                 }
@@ -106,7 +105,6 @@ function CuentaPadrenuestro(posicionY){
     }
 }
 function CuentaGloria(posicionY){
-    console.log(posicionY)
     var img = padreNuestroGloriaImage
     var width = cnvs.clientWidth * (1/15);
     var height = width

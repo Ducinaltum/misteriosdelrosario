@@ -1,12 +1,17 @@
 var cnvs = document.getElementById("game")
 var context = cnvs.getContext("2d");
 var today = new Date();
-console.log(today.getDay())
+var hasFinished = false
 
 function Start() {
     cnvs.addEventListener("mousemove", mouseMoveHandler, false);
     cnvs.addEventListener("mousedown", mouseDown, false);
     cnvs.addEventListener("mouseup", mouseUp, false);
+//    cnvs.addEventListener("mousemove", mouseMoveHandler, false);
+  //  cnvs.addEventListener("mousedown", mouseDown, false);
+    //cnvs.addEventListener("mouseup", mouseUp, false);
+
+
     var mouse = {
         X:0,
         Y:0,
@@ -34,13 +39,15 @@ function Start() {
         denario.cuentas.forEach(oracion => {
             oracion.draw(context)
         });
+        denario.gloria.draw(context)
         denario.aveMaria.forEach((oracion, i) => {
             oracion.update(mouse, denario)
             oracion.draw(context)
         });
-        denario.gloria.draw(context)
-        if(denario.conteo >= 10){
-            alert("Has completado un misterio!!!")
+        if(denario.conteo >= 10 && !hasFinished){
+            hasFinished = true
+            location.reload();
+            alert("!!!Has completado un misterio!!!")
             clearInterval(updater);
         }
 
@@ -48,7 +55,7 @@ function Start() {
     }, 1000 / 30);
 }
 
-Start()
+//Start()
 
 function Denario() {
     this.aveMaria = []
