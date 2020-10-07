@@ -22,6 +22,7 @@ function loadImages(){
 
 loadImages()
 loadedImages = 0
+
 function waitForLoad(){
     loadedImages++
     if(loadedImages >= 12){
