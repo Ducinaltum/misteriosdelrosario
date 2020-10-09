@@ -6,12 +6,13 @@ function Flower(i, cta){
     var width = cnvs.clientWidth * (1/25);
     var height = width * ratio
     var rad = width > height? width /2 : height/2;
-    var posX = Math.floor(Math.random()*cnvs.clientWidth - width) + width
-    var posY = Math.floor(Math.random()*cnvs.clientHeight - cuenta.size().Y - cuenta.size().radious) + cuenta.size().Y + cuenta.size().radious
+    var posX = Math.floor(Math.random()* (cnvs.clientWidth - (rad*4))) + rad*2
+    var posY = Math.floor(Math.random()* (cnvs.clientHeight - (cuenta.size().Y*2) - (cuenta.size().radious*2))) + cuenta.size().Y + (cuenta.size().radious*2)
+    console.log(posX)
     var isClicked;
     var hasReachedDestiny = false;
 
-    this.update = function(mouse, denario){
+    this.update = function(mouse, gameState){
         if(mouse.isMouseDown){
             if(!mouse.isMouseLoaded){
                 if(radCollition(this.size(), mouse)){
@@ -21,11 +22,10 @@ function Flower(i, cta){
             }
         } else {
             isClicked = false;
-            //console.log(cuenta)
             if( !hasReachedDestiny){
                 if (radCollition(this.size(), cuenta.size())) {
                     hasReachedDestiny = true
-                    denario.conteo++;
+                    gameState.conteo++;
                 }
             }
         }

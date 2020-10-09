@@ -25,8 +25,8 @@ loadedImages = 0
 
 function waitForLoad(){
     loadedImages++
-    if(loadedImages >= 12){
-        Start()
+    if(loadedImages >= 22 && !updater){
+        document.getElementById("btnInicio").disabled = false
     }
 }
 

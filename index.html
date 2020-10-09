@@ -5,32 +5,40 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        h2,
+        p,
+        button {
+            margin: 2%;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container-fluid">
-    <div id="bienvenida">
+    <!-- Black with white text -->
 
+    <div class="navbar-fixed-top text-center bg-dark text-white">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <p>Equipo pastoral INMM, La Carlota, Córdoba, Argentina</p>
+            </li>
+        </ul>
+        <img src="Assets\escudo-grande.png" class="img-fluid" alt="Responsive image" width="50" height="50">
+        <br>
+        <h1 class="text-center">Octubre: Mes del Rosario</h1>
+        <br>
     </div>
-    <div id="persignacion" class="container text-center">
-        <!--<p>Por la señal de la santa cruz, de nuestros enemigos líbranos Señor.</p>
-        <p>En el nombre del Padre, del Hijo y del espíritu Santo.</p>
-        <button type="button" class="btn btn-primary">Amén</button>
+    <div id="mainDiv" class="container-fluid rounded text-center border">
+        <div id="texto">
+            <h2>¡Oramos!</h2>
+            <p> Por la señal de la Santa Cruz, de nuestros enemigos libranos, Señor, Dios nuesto. En el nombre del Padre
+                y del Hijo y del Espíritu Santo</p>
+            <p> Realizamos un acto de contrición. Rezamos el pésame </p>
+            <button id="btnInicio" class="btn btn-primary" onclick="inicioDeNuevoMisterio()" disabled="true"> Amen
+            </button>
+        </div>
     </div>
-    <div id="credo" class="text-center">
-        <button type="button" class="btn btn-primary">Amén</button>
-    </div>-->
-    <div id="misterios" class="container text-center">
-        <!--<h1 id="tipoDeMisterio">Misterios PLACEHOLDER</h1>
-        <h3 id="numeroDeMisterio">N Misterio PLACEHOLDER</h3>
-        <p id="descripcionDeMisterio">EN EL N MISTITERIO MMMMMMMM RECORDAMOS</p>-->
-        <h1 id="tipoDeMisterio">Denario</h1>
-        <canvas id="game" width="720" height="480"></canvas>
-    </div>
-    <div id="cierre">
-       <!-- <canvas id="endGame" width="640" height="480"></canvas>-->
-    </div>
-    </div>
+    <script src="Scripts\textManager.js"></script>
     <script src="Scripts\flowers.js"></script>
     <script src="Scripts\imagesLoader.js"></script>
     <script src="Scripts\utils.js"></script>
